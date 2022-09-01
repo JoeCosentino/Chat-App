@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
-import io from 'socket.io-client';
+import {io} from 'socket.io-client';
+
+let socket;
 
 const Chat = () => {
 
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const ENDPOINT = 'localhost:5000';
+    socket = io(ENDPOINT);
 
     const search = useLocation().search;
 
@@ -15,6 +19,8 @@ const Chat = () => {
 
         setName(name);
         setRoom(room);
+
+        console.log(socket);
     })
 
     return (
